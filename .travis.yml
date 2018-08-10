@@ -1,0 +1,19 @@
+language:
+  - python
+
+sudo:
+  - false
+  
+python:
+  - 2.7
+  - 3.5
+  - 3.6
+  
+before_install:
+  - pip install -r requirements-dev.txt
+  
+script:
+  - flake8 crypto_django
+  - pycodestyle crypto_django
+  - pylint crypto_django
+  - coverage run --source=crypto_django -m unittest discover && coverage report -m
