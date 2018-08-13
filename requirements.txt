@@ -1,0 +1,2 @@
+Django==2.0.7
+eth-utils==1.0.3
