@@ -3,7 +3,6 @@
 The API wrapper written in Python allow you to speak with Bridges REST API in pythonic way.
 
 ![Build](https://api.travis-ci.com/essentiaone/crypto-django.svg?branch=developp)
-https://travis-ci.com/essentiaone/crypto-django.svg?branch=develop
 ![Python35](https://img.shields.io/badge/Python-3.5-brightgreen.svg)
 ![Python36](https://img.shields.io/badge/Python-3.6-brightgreen.svg)
 [![Release](https://img.shields.io/github/release/essentiaone/crypto-django.svg)](https://github.com/essentiaone/crypto-django/releases)
