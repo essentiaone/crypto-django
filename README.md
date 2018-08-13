@@ -9,7 +9,7 @@ The API wrapper written in Python allow you to speak with Bridges REST API in py
 
   * [Getting started](#getting-started)
   * [API documentation](#api)
-    * [Ethereum forms](#ethereum-forms)
+    * [Forms](#forms)
 
 ## Getting started
 
@@ -46,7 +46,7 @@ return form.errors
 
 ### Forms
 
-#### Ethereum forms
+#### Ethereum
 
 Validate Ethreum address.
 
