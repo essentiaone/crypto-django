@@ -13,6 +13,12 @@ The API wrapper written in Python allow you to speak with Bridges REST API in py
 
 ## Getting started
 
+Install package from terminal using `pip`:
+
+```
+$ pip3 install crypto-django
+```
+
 Simple usage of the library introduced below:
 
 ```python
