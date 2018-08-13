@@ -18,14 +18,11 @@ class EthereumAddressField(forms.CharField):
 
     default_error_messages = {
         'invalid': 'Invalid Ethereum address.',
-        'length':  'Ensure address has %(required_address_length)d character (it has %(current_address_length)d).',
+        'length': 'Ensure address has %(required_address_length)d character (it has %(current_address_length)d).',
         'hex': 'Ensure address has \'0x\' as two first characters.',
     }
 
-    def __init__(self, *args, **kwargs):
-        super(EthereumAddressField, self).__init__(*args, **kwargs)
-
-    def to_python(self, address):
+    def to_python(self, value):
         """
         Validate Ethereum address.
 
@@ -34,6 +31,10 @@ class EthereumAddressField(forms.CharField):
             - github.com/ethereum/eth-utils/blob/a5569fdac5f0e7575872ca3aad7802068974de6b/eth_utils/address.py#L55
             - github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md
         """
+        # parameter will be differ from overridden 'to_python' method
+        # if `address` in function parameters instead of reassigning to it
+        address = value
+
         address_length = len(address)
         address_first_two_characters = address[:2]
 
