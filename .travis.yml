@@ -5,13 +5,14 @@ sudo:
   - false
   
 python:
-  - 2.7
   - 3.5
   - 3.6
   
 before_install:
-  - pip install -r requirements-dev.txt
-  
+  - pip3 install -r requirements.txt
+  - pip3 install -r requirements-dev.txt
+  - pip3 install -r requirements-tests.txt
+
 script:
   - flake8 crypto_django
   - pycodestyle crypto_django
