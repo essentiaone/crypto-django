@@ -1,5 +1,5 @@
 """
-Provide implementation for Ethereum address form field.
+Provide implementation for Bitcoin address form field.
 """
 from bit.base58 import b58decode_check
 from django import forms
@@ -37,21 +37,24 @@ class BitcoinAddressField(forms.CharField):
         """
         address = value
         address_length = len(address)
+        prefixes = [P2SH_PREFIX, P2PKH_PREFIX, BECH32_PREFIX]
 
-        if address_length < 26:
+        if address_length < REQUIRED_BITCOIN_ADDRESS_LENGTH:
             error_message_params = {
                 'required_address_length': REQUIRED_BITCOIN_ADDRESS_LENGTH,
                 'current_address_length': address_length,
             }
             raise ValidationError(self.error_messages.get('length'), code='length', params=error_message_params)
 
-        if address[0] != P2SH_PREFIX and address[0] != P2PKH_PREFIX and address[:3]:
+        if not any([address.startswith(prefix) for prefix in prefixes]):
             raise ValidationError(self.error_messages.get('prefix'), code='prefix')
 
         if address.startswith(BECH32_PREFIX) and not Bech32().bech32_decode(address):
+            # Checksum validation for segwit addresses
             raise ValidationError(self.error_messages.get('bech32'), code='bech32')
 
         if address.startswith(P2SH_PREFIX) or address.startswith(P2PKH_PREFIX):
+            # Checksum validation for P2KH/P2SH addresses
             try:
                 b58decode_check(value)
             except ValueError as error_message:
