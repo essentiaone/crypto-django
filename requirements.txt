@@ -1,3 +1,4 @@
+bit==0.4.3
 Django==2.0.7
 eth-utils==1.0.3
 eth-hash[pycryptodome]
