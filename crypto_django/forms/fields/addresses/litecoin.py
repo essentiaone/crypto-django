@@ -9,8 +9,8 @@ from crypto_django.constants.address import (
     LITECOIN_BECH32_PREFIX,
     LITECOIN_P2SH_PREFIX,
     LITECOIN_P2PKH_PREFIX,
-    REQUIRED_LITECOIN_ADDRESS_LENGTH,
     MIN_LITECOIN_ADDRESS_LENGTH,
+    REQUIRED_LITECOIN_ADDRESS_LENGTH,
 )
 from crypto_django.forms.fields.bech32 import Bech32
 
@@ -34,7 +34,7 @@ class LitecoinAddressField(forms.CharField):
         References:
             - https://blog.trezor.io/litecoins-new-p2sh-segwit-addresses-843633e3e707
             - https://github.com/litecoin-project/litecoin/issues/312
-            - github.com/sipa/bech32/blob/master/ref/python/segwit_addr.py
+            - https://github.com/sipa/bech32/blob/master/ref/python/segwit_addr.py
             - https://chaining.ru/2018/05/31/litecoin-core-v0-16-0-release-litecoin-project/
         """
         address = value

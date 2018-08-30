@@ -9,8 +9,8 @@ from crypto_django.constants.address import (
     BITCOIN_BECH32_PREFIX,
     BITCOIN_P2SH_PREFIX,
     BITCOIN_P2PKH_PREFIX,
-    REQUIRED_BITCOIN_ADDRESS_LENGTH,
     MIN_BITCOIN_ADDRESS_LENGTH,
+    REQUIRED_BITCOIN_ADDRESS_LENGTH,
 )
 from crypto_django.forms.fields.bech32 import Bech32
 
@@ -32,9 +32,9 @@ class BitcoinAddressField(forms.CharField):
         Validate Bitcoin address.
 
         References:
-            - github.com/bitcoin/bips/blob/master/bip-0173.mediawiki
-            - github.com/ofek/bit/blob/e5640cbc79c183b8c4051b46b3ccf3e813e021d3/bit/base58.py
-            - github.com/sipa/bech32/blob/master/ref/python/segwit_addr.py
+            - https://github.com/bitcoin/bips/blob/master/bip-0173.mediawiki
+            - https://github.com/ofek/bit/blob/e5640cbc79c183b8c4051b46b3ccf3e813e021d3/bit/base58.py
+            - https://github.com/sipa/bech32/blob/master/ref/python/segwit_addr.py
         """
         address = value
         address_length = len(address)
