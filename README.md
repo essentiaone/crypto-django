@@ -69,3 +69,39 @@ form = EthreumTransactionForm({
     'address': '0x4Aa548D7589f003486892777CBb0B70dff5d6949',
 })
 ```
+
+#### Bitcoin
+
+Validate Bitcoin address.
+
+```python
+from crypto_django.forms import BitcoinAddressField
+from django import forms
+
+
+class BitcoinTransactionForm(forms.Form):
+    address = BitcoinAddressField()
+
+
+form = BitcoinTransactionForm({
+    'address': '3MLiqxr3iyER1mZkrdvt83c99P1bsGjqH2',
+})
+```
+
+#### Litecoin
+
+Validate Litecoin address.
+
+```python
+from crypto_django.forms import LitecoinAddressField
+from django import forms
+
+
+class LitecoinTransactionForm(forms.Form):
+    address = LitecoinAddressField()
+
+
+form = BitcoinTransactionForm({
+    'address': 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF',
+})
+```
