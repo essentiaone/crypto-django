@@ -101,7 +101,7 @@ class LitecoinTransactionForm(forms.Form):
     address = LitecoinAddressField()
 
 
-form = BitcoinTransactionForm({
+form = LitecoinTransactionForm({
     'address': 'LTNJvXUJeRi41DJuEg5V3zWRhUisC3KUtF',
 })
 ```

@@ -10,13 +10,13 @@ from django.core.exceptions import ValidationError
 from crypto_django.forms.fields.bech32 import Bech32
 
 
-class AbstractAddressField(forms.CharField):
+class AbstractBitcoinAddressField(forms.CharField):
     """
     Bitcoin-like address form field abstract implementation.
     """
 
     def __init__(self):
-        super(AbstractAddressField, self).__init__()
+        super(AbstractBitcoinAddressField, self).__init__()
         self.default_error_messages = {
             'bech32': 'Invalid bech32 address',
             'length': 'Ensure address has %(required_address_length)d character (it has %(current_address_length)d).',

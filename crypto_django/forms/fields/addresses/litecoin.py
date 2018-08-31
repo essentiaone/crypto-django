@@ -8,10 +8,10 @@ from crypto_django.constants.address import (
     MIN_LITECOIN_ADDRESS_LENGTH,
     REQUIRED_LITECOIN_ADDRESS_LENGTH,
 )
-from crypto_django.forms.abc.fields.addresses.bitcoin import AbstractAddressField
+from crypto_django.forms.abc.fields.addresses.bitcoin import AbstractBitcoinAddressField
 
 
-class LitecoinAddressField(AbstractAddressField):
+class LitecoinAddressField(AbstractBitcoinAddressField):
     """
     Litecoin address form field implementation.
     """
