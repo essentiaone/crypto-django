@@ -42,7 +42,7 @@ class BitcoinCashAddressField(forms.CharField):
         address_length = len(address)
 
         address_first_character = address[:1]
-        address_first_thirteen_characters = address[:13]
+        address_first_13_characters = address[:13]
 
         error_message_params = {
             'current_address_length': address_length,
@@ -62,7 +62,7 @@ class BitcoinCashAddressField(forms.CharField):
 
             return super().to_python(address)
 
-        if address_first_thirteen_characters in BITCOIN_CASH_NEW_PREFIXES:
+        if address_first_13_characters in BITCOIN_CASH_NEW_PREFIXES:
 
             if address_length != REQUIRED_BITCOIN_CASH_NEW_ADDRESS_LENGTH:
                 error_message_params.update({
