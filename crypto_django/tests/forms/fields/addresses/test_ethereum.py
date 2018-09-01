@@ -27,15 +27,15 @@ class TestEthereumAddressField(TestCase):
     def test_required_length_error(self):
         """
         Case: validate address with invalid required length (less than needed).
-        Expect: ValidationError is raised.
+        Expect: validation error is raised.
         """
         with self.assertRaises(ValidationError):
             self.ethereum_address_field.to_python(value=self.required_length_invalid_address)
 
-    def test_no_he_address_error(self):
+    def test_no_hex_address_error(self):
         """
         Case: validate address without `0x` at the start.
-        Expect: ValidationError is raised.
+        Expect: validation error is raised.
         """
         with self.assertRaises(ValidationError):
             self.ethereum_address_field.to_python(value=self.no_hex_invalid_address)
@@ -43,14 +43,14 @@ class TestEthereumAddressField(TestCase):
     def test_not_valid(self):
         """
         Case: validate address with official Ethereum utils library for address validation.
-        Expect: ValidationError is raised.
+        Expect: validation error is raised.
         """
         with self.assertRaises(ValidationError):
             self.ethereum_address_field.to_python(value=self.not_valid_address)
 
     def test_valid(self):
         """
-        Case:
+        Case: validate correct address.
         Expect: value put to `to_python` (address) is returned.
         """
         valid_address = self.ethereum_address_field.to_python(value=self.valid_address)

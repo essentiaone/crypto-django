@@ -28,7 +28,7 @@ class TestLitecoinAddressField(TestCase):
     def test_required_length_error(self):
         """
         Case: validate address with invalid required length (less than needed).
-        Expect: validation error message is raised.
+        Expect: validation error is raised.
         """
         with self.assertRaises(ValidationError):
             self.litecoin_address_field.to_python(value=self.required_length_invalid_address)
@@ -36,7 +36,7 @@ class TestLitecoinAddressField(TestCase):
     def test_another_address_error(self):
         """
         Case: validate address from another wallet.
-        Expect: validation error message is raised.
+        Expect: validation error is raised.
         """
         with self.assertRaises(ValidationError):
             self.litecoin_address_field.to_python(value=self.another_invalid_address)
@@ -44,7 +44,7 @@ class TestLitecoinAddressField(TestCase):
     def test_not_valid(self):
         """
         Case: validate address with official Litecoin utils library for address validation.
-        Expect: validation error message is raised.
+        Expect: validation error is raised.
         """
         with self.assertRaises(ValidationError):
             self.litecoin_address_field.to_python(value=self.not_valid_address)
