@@ -15,15 +15,14 @@ class AbstractBitcoinAddressField(forms.CharField):
     Bitcoin-like address form field abstract implementation.
     """
 
-    def __init__(self):
-        super(AbstractBitcoinAddressField, self).__init__()
-        self.default_error_messages = {
-            'bech32': 'Invalid bech32 address',
-            'length': 'Ensure address has %(required_address_length)d character (it has %(current_address_length)d).',
-            'p2': 'Invalid P2PKH/P2SH address. %(b58decode_error)s',
-            'prefix': 'Invalid address prefix - it has to start with one of '
-                      'the [{}, {}, {}]'.format(self.bech32_prefix, self.p2sh_prefix, self.p2pkh_prefix),
-        }
+    default_error_messages = {
+        'bech32': 'Invalid bech32 address',
+        'length': 'Ensure address must be %(min_address_length)s or %(required_address_length)s character '
+                  '(it has %(current_address_length)d).',
+        'p2': 'Invalid P2PKH/P2SH address. %(b58decode_error)s',
+        'prefix': 'Invalid address prefix - it has to start with one of the '
+                  '[%(bech32_prefix)s, %(legacy_prefix)s, %(segwit_prefix)s]',
+    }
 
     @abstractmethod
     def bech32_prefix(self):
@@ -75,17 +74,23 @@ class AbstractBitcoinAddressField(forms.CharField):
         """
         address = value
         address_length = len(address)
-        prefixes = [self.p2sh_prefix, self.p2pkh_prefix, self.bech32_prefix]
+        prefixes = (self.p2sh_prefix, self.p2pkh_prefix, self.bech32_prefix)
 
-        if self.min_address_length < address_length < self.required_address_length:
+        if address_length != self.min_address_length and address_length != self.required_address_length:
             error_message_params = {
+                'min_address_length': self.min_address_length,
                 'required_address_length': self.required_address_length,
                 'current_address_length': address_length,
             }
             raise ValidationError(self.error_messages.get('length'), code='length', params=error_message_params)
 
         if not any([address.startswith(prefix) for prefix in prefixes]):
-            raise ValidationError(self.error_messages.get('prefix'), code='prefix')
+            error_message_params = {
+                'bech32_prefix': self.bech32_prefix,
+                'segwit_prefix': self.p2sh_prefix,
+                'legacy_prefix': self.p2pkh_prefix,
+            }
+            raise ValidationError(self.error_messages.get('prefix'), code='prefix', params=error_message_params)
 
         if address.startswith(self.bech32_prefix) and not Bech32().bech32_decode(address):
             # Checksum validation for segwit addresses
