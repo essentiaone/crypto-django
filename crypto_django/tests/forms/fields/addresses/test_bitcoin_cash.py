@@ -41,9 +41,18 @@ class TestOldBitcoinCashAddressField(TestCase):
         """
         self.bitcoin_cash_address_field = BitcoinCashAddressField()
 
+        self.old_invalid_address_prefix = '8J6NLoiPfUCYVr46oHnDFZTYbzrMxp'
         self.old_invalid_address_lenght = '1J6NLoiPfUCYVr46oHnDFZTYbzrMxp'
         self.old_invalid_address = '1J6NLoiPfUCYVr46oHnDFZTYbzrMxerqU1'
         self.old_valid_address = '1J6NLoiPfUCYVr46oHnDFZTYbzrMxpyqU1'
+
+    def test_invalid_prefix_error(self):
+        """
+        Case: validate address with invalid prefix.
+        Expect: validation error is raised.
+        """
+        with self.assertRaises(ValidationError):
+            self.bitcoin_cash_address_field.to_python(value=self.old_invalid_address_prefix)
 
     def test_invalid_address_len_error(self):
         """
@@ -81,9 +90,18 @@ class TestNewBitcoinCashAddressField(TestCase):
         """
         self.bitcoin_cash_address_field = BitcoinCashAddressField()
 
+        self.new_invalid_address_prefix = 'litcoincash:qzahuzrezp0259h8zgtpuajkm34xqq9s8vpsq27qm0'
         self.new_invalid_address_lenght = 'bitcoincash:qzahuzrezp0259h8zgtpuajkm34x'
         self.new_invalid_address = 'bitcoincash:qzahuzrezp0259h8zgtpuajkm34xqq9s8vpsq27rew'
         self.new_valid_address = 'bitcoincash:qzahuzrezp0259h8zgtpuajkm34xqq9s8vpsq27qm0'
+
+    def test_invalid_prefix_error(self):
+        """
+        Case: validate address with invalid prefix.
+        Expect: validation error is raised.
+        """
+        with self.assertRaises(ValidationError):
+            self.bitcoin_cash_address_field.to_python(value=self.new_invalid_address_prefix)
 
     def test_invalid_address_len_error(self):
         """

@@ -22,8 +22,8 @@ class BitcoinCashAddressField(forms.CharField):
         'invalid': 'Invalid Bitcoin Cash address.',
         'length':
             'Ensure address has %(required_address_format_length)d character (it has %(current_address_length)d).',
-        'cashaddr_prefix': 'Ensure address has \'bitcoincash:p\' or \'bitcoincash:q\' as thirteen first characters.',
-        'legacy_prefix': 'Ensure address has \'1\' or \'3\' as first character.',
+        'prefix': 'Ensure address has \'bitcoincash:p\' or \'bitcoincash:q\' as thirteen first characters '
+                  'for new address or has \'1\' or \'3\' as first character for old address.',
     }
 
     def to_python(self, value):
@@ -76,4 +76,4 @@ class BitcoinCashAddressField(forms.CharField):
 
             return super().to_python(address)
 
-        raise ValidationError(self.error_messages.get('invalid'), code='invalid')
+        raise ValidationError(self.error_messages.get('prefix'), code='prefix', params=error_message_params)

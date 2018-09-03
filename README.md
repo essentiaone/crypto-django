@@ -97,7 +97,7 @@ from crypto_django.forms import EthereumAddressField
 from django import forms
 
 
-class EthreumTransactionForm(forms.Form):
+class EthereumTransactionForm(forms.Form):
     address = EthereumAddressField()
 
 
