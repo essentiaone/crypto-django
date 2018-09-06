@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='crypto-django',
-    version='0.0.1',
+    version='0.1.1',
     packages = find_packages(),
     include_package_data=True,
     license='MIT',
@@ -22,5 +22,12 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
+    ],
+    install_requires=[
+        'bit==0.4.3',
+        'bitcash==0.5.2',
+        'Django==2.1.1',
+        'eth-utils==1.2.1',
+        'eth-hash[pycryptodome]',
     ],
 )
