@@ -76,7 +76,7 @@ class AbstractBitcoinAddressField(forms.CharField):
         address_length = len(address)
         prefixes = (self.p2sh_prefix, self.p2pkh_prefix, self.bech32_prefix)
 
-        if address_length != self.min_address_length and address_length != self.required_address_length:
+        if address_length not in (self.min_address_length, self.required_address_length):
             error_message_params = {
                 'min_address_length': self.min_address_length,
                 'required_address_length': self.required_address_length,
