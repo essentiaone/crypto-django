@@ -27,7 +27,7 @@ setup(
         'bit==0.4.3',
         'bitcash==0.5.2',
         'Django==2.1.1',
-        'eth-utils==1.2.1',
+        'eth-utils==1.2.2',
         'eth-hash[pycryptodome]',
     ],
 )
