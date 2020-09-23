@@ -24,7 +24,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP :: Dynamic Content',
     ],
     install_requires=[
-        'bit==0.4.3',
+        'bit==0.7.2',
         'bitcash==0.5.2',
         'Django==2.1.2',
         'eth-utils==1.2.2',
